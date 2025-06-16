@@ -1,0 +1,22 @@
+schemaVersion: v1
+
+questions:
+  project_name:
+    type: str
+    help: What is your project's name?
+    default: "{{ git_email }}"
+
+  project_author:
+    type: str
+    help: What is your project's author?
+    default: "{{ git_author }}"
+
+  project_slug:
+    type: str
+    help: What is your project's slug (Enter to use default)?
+    default: "{{ project_name|lower|replace(' ', '_') }}"
+
+  use_tests:
+    type: bool
+    Help: Use tests?
+    default: true

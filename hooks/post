@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+set -euo pipefail
+
+if command -v "git" >/dev/null; then
+     git init
+   else
+     echo "Please install 'git':"
+     echo "https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"
+fi
+
+if command -v "uv" >/dev/null; then
+     uv sync
+   else
+     echo "Please install 'uv':"
+     echo "https://docs.astral.sh/uv/getting-started/installation/"
+fi

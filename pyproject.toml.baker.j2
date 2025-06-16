@@ -1,0 +1,41 @@
+[project]
+name = "{{ project_name }}"
+version = "0.1.0"
+description = "{{ project_description }}"
+readme = "README.md"
+authors = [
+    { name = "{{ project_author }}",
+      email = "{{ project_author_email }}"
+  }
+]
+requires-python = ">=3.11"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pyright]
+venv = ".venv"
+venvPath = "."
+
+{% if use_tests %}
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--maxfail=2"
+testpaths = [
+    "tests"
+]
+{% endif %}
+
+[dependency-groups]
+dev = [
+    "jupyter>=1.1.1",
+    "pyright>=1.1.401",
+    "pytest>=8.4.0",
+    "pytest-watcher>=0.4.3",
+    "ruff>=0.11.13",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["{{ project_slug }}"]
