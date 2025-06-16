@@ -2,7 +2,9 @@
 
 set -euo pipefail
 
-cd {{ output_dir }}
+read -r CONTEXT
+
+cd $(jq .output_dir <<< ${CONTEXT} | tr -d '"')
 
 if command -v "git" >/dev/null; then
      git init
