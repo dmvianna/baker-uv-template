@@ -4,19 +4,24 @@ questions:
   project_name:
     type: str
     help: What is your project's name?
-    default: "{{ git_email }}"
+    default: "{{ output_dir }}"
 
   project_author:
     type: str
     help: What is your project's author?
     default: "{{ git_author }}"
 
+  project_author_email:
+    type: str
+    help: What is your project's author's email?
+    default: "{{ git_email }}"
+
   project_slug:
     type: str
     help: What is your project's slug (Enter to use default)?
-    default: "{{ project_name|lower|replace(' ', '_') }}"
+    default: "{{ project_name|lower|replace(' ', '_')|replace('-','_') }}"
 
   use_tests:
     type: bool
-    Help: Use tests?
+    help: Use tests?
     default: true
