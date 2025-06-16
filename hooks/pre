@@ -5,4 +5,4 @@ set -euo pipefail
 GIT_EMAIL=`git config get user.email`
 GIT_AUTHOR=`git config get user.name`
 
-echo '{"git_email": "${GIT_EMAIL}", "git_author": "${GIT_AUTHOR}"}'
+echo "{\"git_email\": \"${GIT_EMAIL}\", \"git_author\": \"${GIT_AUTHOR}\"}"
