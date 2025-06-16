@@ -4,7 +4,12 @@ set -euo pipefail
 
 read -r CONTEXT
 
-cd $(jq .output_dir <<< ${CONTEXT} | tr -d '"')
+if command -v "jq" >/dev/null; then
+   cd $(jq .output_dir <<< ${CONTEXT} | tr -d '"')
+   else
+     echo "Please install 'jq':"
+     echo "https://jqlang.org/download/"
+fi
 
 if command -v "git" >/dev/null; then
      git init
