@@ -2,7 +2,18 @@
 
 set -euo pipefail
 
-GIT_EMAIL=`git config get user.email`
-GIT_AUTHOR=`git config get user.name`
+# Check git version and use appropriate config command
+GIT_VERSION=$(git --version | sed 's/git version //' | cut -d' ' -f1)
+GIT_MAJOR=$(echo $GIT_VERSION | cut -d'.' -f1)
+GIT_MINOR=$(echo $GIT_VERSION | cut -d'.' -f2)
+
+# Use 'git config get' for version 2.46 and above, otherwise use 'git config'
+if [ "$GIT_MAJOR" -gt 2 ] || ([ "$GIT_MAJOR" -eq 2 ] && [ "$GIT_MINOR" -ge 46 ]); then
+    GIT_EMAIL=`git config get user.email`
+    GIT_AUTHOR=`git config get user.name`
+else
+    GIT_EMAIL=`git config user.email`
+    GIT_AUTHOR=`git config user.name`
+fi
 
 echo "{\"git_email\": \"${GIT_EMAIL}\", \"git_author\": \"${GIT_AUTHOR}\"}"
