@@ -53,3 +53,19 @@ It also includes common development tools such as `pyright`,
   **JSON** or **CSV** files too.
 
   You can run **pytest-watcher** with `uv run ptw .`.
+
+# How to use
+
+You can either use a template from your local host or point to a
+repository in the web:
+
+```
+$ git clone https://github.com/dmvianna/baker-uv-template
+$ baker ./baker-uv-template <my-project-directory>
+```
+
+or
+
+```
+$ baker https://github.com/dmvianna/baker-uv-template <my-project-directory>
+```
