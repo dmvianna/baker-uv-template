@@ -1,8 +1,30 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 
-GIT_EMAIL=`git config get user.email`
-GIT_AUTHOR=`git config get user.name`
+if command -v "git" >/dev/null; then
+
+  {
+
+    # assume git version >= 2.46
+    GIT_EMAIL=$(git config get user.email)
+    GIT_AUTHOR=$(git config get user.name)
+
+  } || {
+
+    # older git; use older syntax
+    GIT_EMAIL=$(git config user.email)
+    GIT_AUTHOR=$(git config user.name)
+
+  }
+
+else
+
+  echo "Please install 'git':"
+  echo "https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"
+  exit 0
+
+fi
 
 echo "{\"git_email\": \"${GIT_EMAIL}\", \"git_author\": \"${GIT_AUTHOR}\"}"
+
+exit 0
